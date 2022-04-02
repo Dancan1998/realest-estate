@@ -66,7 +66,7 @@ class SearchView(APIView):
             bedrooms = 3
         elif bedrooms == '4+':
             bedrooms = 4
-        elif bedrooms == '5+':
+        elif bedrooms >= '5+':
             bedrooms = 5
 
         queryset = queryset.filter(bedrooms__gte=bedrooms)
@@ -83,7 +83,7 @@ class SearchView(APIView):
             bathrooms = 2.0
         elif bathrooms == '3+':
             bathrooms = 3.0
-        elif bathrooms == '4+':
+        elif bathrooms >= '4+':
             bathrooms = 4.0
 
         queryset = queryset.filter(bathrooms__gte=bathrooms)
@@ -95,7 +95,7 @@ class SearchView(APIView):
             sqft = 1200
         elif sqft == '1500+':
             sqft = 1500
-        elif sqft == '2000+':
+        elif sqft >= '2000+':
             sqft = 2000
         elif sqft == 'Any':
             sqft = 0
@@ -134,7 +134,7 @@ class SearchView(APIView):
             has_photos = 5
         elif has_photos == '10+':
             has_photos = 10
-        elif has_photos == '15+':
+        elif has_photos >= '15+':
             has_photos = 15
 
         for query in queryset:

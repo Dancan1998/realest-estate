@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.timezone import now
-from realtors.models import Realtor
+from realters.models import Realtor
 
 
 class Listing(models.Model):
