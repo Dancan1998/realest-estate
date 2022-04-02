@@ -17,16 +17,21 @@ class SignUpView(APIView):
         password = data['password']
         password2 = data['password2']
 
+        # if email == '':
+        #     return Response({'error': 'Email field can not be empty'}, status=status.HTTP_400_BAD_REQUEST)
+
         if password == password2:
             if User.objects.filter(email=email).exists():
                 return Response({'error': 'Email already exists'}, status=status.HTTP_400_BAD_REQUEST)
             else:
                 if len(password) < 6:
-                    return Response({'error': 'Password must be at least 6 characters in length'})
+                    return Response({'error': 'Password must be at least 6 characters in length'}, status=status.HTTP_400_BAD_REQUEST)
+                elif email == '':
+                    return Response({'error': 'Email field can not be empty'}, status=status.HTTP_400_BAD_REQUEST)
                 else:
                     user = User.objects.create_user(
                         email=email, password=password, name=name)
                     user.save()
-                    return Response({'success': 'User created successfully'}, status=status.HTTP_201_CREATED)
+                    return Response({'success': f'User-({name}) created successfully'}, status=status.HTTP_201_CREATED)
         else:
             return Response({'error': 'Passwords do not match'}, status=status.HTTP_400_BAD_REQUEST)
