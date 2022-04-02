@@ -15,6 +15,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api/accounts/', include('accounts.urls')),
     path('api/realters/', include('realters.urls')),
+    path('api/listings/', include('listings.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # urlpatterns += [re_path(r'^.*',
